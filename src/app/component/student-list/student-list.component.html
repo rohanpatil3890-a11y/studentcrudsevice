@@ -1,0 +1,28 @@
+
+
+<table class="table table-bordered bg-white">
+    <thead>
+        <tr>
+            <th>SrNO</th>
+            <th>FullName</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Edit</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let std of studentArr; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{std.fname}} {{std.lname}}</td>
+            <td>{{std.email}}</td>
+            <td>{{std.contact}}</td>
+            <td> <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+          <mat-icon>edit</mat-icon>
+        </button></td>
+            <td> <button mat-mini-fab color="warn" aria-label="Example icon button with a menu icon">
+          <mat-icon>delete</mat-icon>
+        </button></td>
+        </tr>
+    </tbody>
+</table>
