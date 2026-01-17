@@ -9,16 +9,19 @@ import { StudentService } from 'src/app/service/student.service';
 })
 export class StudentListComponent implements OnInit {
 
-  studentArr : Array<Istd> = []
+  studentArr: Array<Istd> = []
 
-  constructor(private studentService : StudentService) { }
+  constructor(private studentService: StudentService) { }
 
   ngOnInit(): void {
-  this.studentService.fetchAllData()
-  .subscribe(res => {
-    this.studentArr = res
-  })
+    this.studentService.fetchAllData()
+      .subscribe(res => {
+        this.studentArr = res
+      })
 
   }
 
+  onEdit(std: Istd) {
+    this.studentService.onEdit$.next(std)
+  }
 }

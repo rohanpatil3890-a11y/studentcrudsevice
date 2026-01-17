@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Istd } from 'src/app/model/student';
+import { StudentService } from 'src/app/service/student.service';
 
 @Component({
   selector: 'app-student-form',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentFormComponent implements OnInit {
 
-  constructor() { }
+  isInEditMode: boolean = false
+  editObj!: Istd
+  @ViewChild('stdForm') stdForm!: NgForm
+  constructor(private stdService: StudentService) { }
 
   ngOnInit(): void {
+    this.stdService.onEdit$.subscribe(res => {
+      this.stdForm.form.patchValue(res)
+      this.editObj = res
+      this.isInEditMode = true
+    })
   }
 
+  onUpdate() {
+    if (this.stdForm.valid) {
+      let createObj: Istd = {
+        ...this.stdForm.value,
+        id: this.editObj.id
+      }
+      this.stdService.onUpdate(createObj)
+      this.isInEditMode = false
+      this.stdForm.reset()
+    }
+  }
 }

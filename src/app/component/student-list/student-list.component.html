@@ -17,7 +17,7 @@
             <td>{{std.fname}} {{std.lname}}</td>
             <td>{{std.email}}</td>
             <td>{{std.contact}}</td>
-            <td> <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+            <td> <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="onEdit(std)">
           <mat-icon>edit</mat-icon>
         </button></td>
             <td> <button mat-mini-fab color="warn" aria-label="Example icon button with a menu icon">
