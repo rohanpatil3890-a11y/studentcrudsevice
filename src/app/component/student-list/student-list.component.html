@@ -20,7 +20,7 @@
             <td> <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
           <mat-icon>edit</mat-icon>
         </button></td>
-            <td> <button mat-mini-fab color="warn" aria-label="Example icon button with a menu icon">
+            <td> <button (click)="onRemove(std.id)" mat-mini-fab color="warn" aria-label="Example icon button with a menu icon">
           <mat-icon>delete</mat-icon>
         </button></td>
         </tr>
