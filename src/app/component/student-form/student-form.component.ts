@@ -6,17 +6,20 @@ import { StudentService } from 'src/app/service/student.service';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.scss']
+  styleUrls: ['./student-form.component.scss'],
 })
 export class StudentFormComponent implements OnInit {
+  @ViewChild('stdForm') stdForm!: NgForm;
+  constructor(private _stdSerive: StudentService) {}
+
 
   isInEditMode: boolean = false
   editObj!: Istd
-  @ViewChild('stdForm') stdForm!: NgForm
-  constructor(private stdService: StudentService) { }
+
+
 
   ngOnInit(): void {
-    this.stdService.onEdit$.subscribe(res => {
+    this._stdSerive.onEdit$.subscribe(res => {
       this.stdForm.form.patchValue(res)
       this.editObj = res
       this.isInEditMode = true
@@ -29,9 +32,23 @@ export class StudentFormComponent implements OnInit {
         ...this.stdForm.value,
         id: this.editObj.id
       }
-      this.stdService.onUpdate(createObj)
+      this._stdSerive.onUpdate(createObj)
       this.isInEditMode = false
       this.stdForm.reset()
     }
   }
+
+ 
+
+  onAdd() {
+    if (this.stdForm.valid) {
+      let createObj: Istd = {
+        ...this.stdForm.value,
+        id: Date.now().toString(),
+      };
+      this._stdSerive.onAdd(createObj);
+      this.stdForm.reset();
+    }
+  }
+
 }

@@ -4,13 +4,15 @@ import { studentArr } from '../const/student';
 import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentService {
-
-  constructor() { }
+  constructor() {}
 
   studentArr: Array<Istd> = studentArr;
+
+
+ 
 
   fetchAllData(): Observable<Istd[]> {
     return of(this.studentArr);
@@ -22,4 +24,16 @@ export class StudentService {
     let getIndex = this.studentArr.findIndex(s => s.id === std.id)
     this.studentArr[getIndex] = std
   }
+
+
+  onAdd(std: Istd) {
+    this.studentArr.unshift(std);
+  }
+  onRemove(id: string) {
+    let value = this.studentArr.findIndex((s) => s.id === id);
+    if (value > -1) {
+      this.studentArr.splice(value, 1);
+    }
+  }
+
 }

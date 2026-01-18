@@ -16,16 +16,20 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     StudentDashboardComponent,
     StudentFormComponent,
-    StudentListComponent
+    StudentListComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
+
     FormsModule
+
+   
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

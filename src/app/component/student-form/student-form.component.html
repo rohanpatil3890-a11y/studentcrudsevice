@@ -1,7 +1,8 @@
 <div class="card">
+
     <div class="card-body">
-        <form #stdForm="ngForm">
-            <div class="form-group">
+        <form #stdForm="ngForm" (ngSubmit)="onAdd()">
+            <div class="form-group" >
                 <label for="fname">fname</label>
                 <input type="text" ngModel name="fname" #fname="ngModel" required class="form-control">
             </div>
@@ -25,3 +26,5 @@
         </form>
     </div>
 </div>
+
+  
